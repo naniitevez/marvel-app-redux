@@ -6,18 +6,22 @@ import Navbar from "./components/navbar/Navbar";
 import CharactersList from "./pages/CharactersList";
 import ComicsList from "./pages/ComicsList";
 import Footer from "./components/footer/Footer";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/characters" element={<CharactersList />} />
-        <Route path="/comics" element={<ComicsList />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/characters" element={<CharactersList />} />
+          <Route path="/comics" element={<ComicsList />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </Provider>
   );
 }
 
