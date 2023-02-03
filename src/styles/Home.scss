@@ -1,0 +1,11 @@
+@use "variables";
+
+.hero-section {
+  max-width: 100vw;
+
+  & img {
+    width: 100vw;
+    height: 90vh;
+    object-fit: cover;
+  }
+}
