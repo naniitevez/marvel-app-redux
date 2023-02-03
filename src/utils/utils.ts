@@ -5,7 +5,7 @@ const getHash = (ts: string, privateKey: string, publicKey: string): string => {
   return MD5(ts + privateKey + publicKey).toString();
 };
 
-export const getAllHeroes = async () => {
+export const fetchData = async () => {
   let heroesUrl = `${BASE_URL}/v1/public/characters`;
 
   let ts = Date.now().toString();
@@ -18,8 +18,7 @@ export const getAllHeroes = async () => {
     let response = await fetch(url);
     let data = await response.json();
 
-    // console.log(data.data);
-    return data.data.results;
+    return data;
   } catch (err) {
     console.error(err);
     return err;

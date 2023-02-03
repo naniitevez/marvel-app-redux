@@ -1,10 +1,12 @@
 import React from "react";
+import { useAppSelector } from "../../redux/hooks";
+import { getHeroes } from "../../redux/heroesSlice"
 import "../../styles/Footer.scss";
 
 const Footer = () => {
+  const state = useAppSelector(getHeroes)
   return (
-    <footer>
-      <a href="https://developer.marvel.com/" target="_blank">Marvel Api</a>
+    <footer dangerouslySetInnerHTML={{ __html: state.attributionHTML }}>
     </footer>
   );
 };

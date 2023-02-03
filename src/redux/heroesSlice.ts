@@ -1,10 +1,13 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HeroesDataState } from "../types/heroes";
-import { getAllHeroes } from "../utils/utils";
+import { fetchData } from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: HeroesDataState = {
   heroes: [],
+  offset: 0,
+  count: 0,
+  attributionHTML: '',
   status: "idle",
   error: null,
 };
@@ -12,7 +15,7 @@ const initialState: HeroesDataState = {
 export const fetchHeroes = createAsyncThunk<any>(
   "hero/fetchHeroes",
   async () => {
-    const response = await getAllHeroes();
+    const response = await fetchData();
     return response;
   }
 );
@@ -32,7 +35,9 @@ export const heroesSlice = createSlice({
       })
       .addCase(fetchHeroes.fulfilled, (state, action) => {
         state.status = "succeced";
-        // state.heroes = action.payload;
+        state.heroes = action.payload.data.results;
+        state.count = action.payload.data.count;
+        state.attributionHTML = action.payload.attributionHTML;
       });
   },
 });
