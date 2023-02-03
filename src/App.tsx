@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
 import CharactersList from "./pages/CharactersList";
 import ComicsList from "./pages/ComicsList";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/characters" element={<CharactersList />} />
         <Route path="/comics" element={<ComicsList />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
