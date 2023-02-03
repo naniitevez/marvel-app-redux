@@ -1,0 +1,44 @@
+@use "variables";
+
+header {
+  min-width: 100%;
+  height: 60px;
+  display: flex;
+  background-color: variables.$red;
+
+  & .navbar {
+    width: min(90%, 75rem);
+    margin: 0 auto;
+    min-height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & ul {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      list-style: none;
+
+      & li {
+        font-weight: 400;
+        padding: 15px;
+        width: 70px;
+
+        &:hover {
+          font-weight: 500;
+        }
+      }
+
+      & a {
+        text-decoration: none;
+        color: variables.$black;
+      }
+    }
+
+    & img {
+      width: 200px;
+    }
+  }
+}
