@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { HeroesDataState } from "../types/heroes";
-import { fetchData } from "../utils/utils";
+import { fetchCharacters } from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: HeroesDataState = {
@@ -15,7 +15,7 @@ const initialState: HeroesDataState = {
 export const fetchHeroes = createAsyncThunk<any, number>(
   "hero/fetchHeroes",
   async (limit) => {
-    const response = await fetchData(limit);
+    const response = await fetchCharacters(limit);
     return response;
   }
 );

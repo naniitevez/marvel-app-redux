@@ -7,21 +7,21 @@ const HeroSection = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/assets/cover-image.jpg"
+          src="/assets/cover/cover-image.jpg"
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/assets/cover-image-1.jpg"
+          src="/assets/cover/cover-image-1.jpg"
           alt="Second slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/assets/cover-image-2.jpg"
+          src="/assets/cover/cover-image-2.jpg"
           alt="Third slide"
         />
       </Carousel.Item>

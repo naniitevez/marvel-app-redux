@@ -8,3 +8,8 @@ export interface HeroesDataState {
   status?: Status;
   error?: string | null;
 }
+
+export interface HeroeCardProps {
+  name: string;
+  image: string;
+}

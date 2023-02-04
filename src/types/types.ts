@@ -7,4 +7,15 @@ export interface NavItemProps {
   menuItem: string;
 }
 
+export interface ImageBannerProps {
+  image: string;
+  alt: string;
+}
+
+export interface ButtonComponentProps {
+  variant?: string;
+  text: string;
+  handleClick: () => void;
+}
+
 export type Status = 'idle' | 'loading' | 'failed' | 'succeced';
