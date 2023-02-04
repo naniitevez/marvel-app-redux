@@ -12,10 +12,10 @@ const initialState: HeroesDataState = {
   error: null,
 };
 
-export const fetchHeroes = createAsyncThunk<any>(
+export const fetchHeroes = createAsyncThunk<any, number>(
   "hero/fetchHeroes",
-  async () => {
-    const response = await fetchData();
+  async (limit) => {
+    const response = await fetchData(limit);
     return response;
   }
 );
