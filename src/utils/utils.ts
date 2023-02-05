@@ -1,26 +1,25 @@
 import { MD5 } from "crypto-js";
-import { BASE_URL, PRIVATE_KEY, PUBLIC_KEY } from "./constants";
+import { ApiResponse } from "../types/heroes";
+import { CHARACTERS_URL, PRIVATE_KEY, PUBLIC_KEY } from "./constants";
 
-const getHash = (ts: string, privateKey: string, publicKey: string): string => {
-  return MD5(ts + privateKey + publicKey).toString();
+const getHash = (
+  timestamp: string,
+  privateKey: string,
+  publicKey: string
+): string => {
+  return MD5(timestamp + privateKey + publicKey).toString();
 };
 
-export const fetchData = async () => {
-  let heroesUrl = `${BASE_URL}/v1/public/characters`;
+const TIMESTAMP = Date.now().toString();
+const HASH = getHash(TIMESTAMP, PRIVATE_KEY, PUBLIC_KEY);
+const AUTH_PARAMS = `ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${HASH}`;
 
-  let ts = Date.now().toString();
-  let apiKey = PUBLIC_KEY;
-  let privateKey = PRIVATE_KEY;
-  let hash = getHash(ts, privateKey, apiKey);
-  let url = `${heroesUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}`;
+export const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
+  const limit = 20;
+  const url = `${CHARACTERS_URL}?limit=${limit}&offset=${offset}&${AUTH_PARAMS}`;
 
-  try {
-    let response = await fetch(url);
-    let data = await response.json();
+  let response = await fetch(url);
+  let data = await response.json();
 
-    return data;
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
+  return data;
 };

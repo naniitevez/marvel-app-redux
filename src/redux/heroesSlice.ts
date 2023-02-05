@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { HeroesDataState } from "../types/heroes";
+import { ApiResponse, HeroesDataState } from "../types/heroes";
 import { fetchCharacters } from "../utils/utils";
 import { RootState } from "./store";
 
@@ -7,15 +7,17 @@ const initialState: HeroesDataState = {
   heroes: [],
   offset: 0,
   count: 0,
+  limit: 0,
+  total: 0,
   attributionHTML: '',
   status: "idle",
   error: null,
 };
 
-export const fetchHeroes = createAsyncThunk<any, number>(
+export const fetchHeroes = createAsyncThunk<ApiResponse, number>(
   "hero/fetchHeroes",
-  async (limit) => {
-    const response = await fetchCharacters(limit);
+  async (offset) => {
+    const response = await fetchCharacters(offset);
     return response;
   }
 );
@@ -36,7 +38,10 @@ export const heroesSlice = createSlice({
       .addCase(fetchHeroes.fulfilled, (state, action) => {
         state.status = "succeced";
         state.heroes = action.payload.data.results;
+        console.log("PAYLOAD", action.payload)
         state.count = action.payload.data.count;
+        state.limit = action.payload.data.limit;
+        state.total = action.payload.data.total;
         state.attributionHTML = action.payload.attributionHTML;
       });
   },
