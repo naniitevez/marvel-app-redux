@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { HeroeCardProps } from "../types/heroes";
 import ButtonComponent from "./ButtonComponent";
 
-const CardComponent: React.FC<HeroeCardProps> = ({ name, image }) => {
+const CardComponent: React.FC<HeroeCardProps> = ({ name, image, id }) => {
+  let navigate = useNavigate();
+
   const handleConsole = () => {
-    console.log("Click");
+    navigate(`/characters/${id}`);
   };
 
   return (

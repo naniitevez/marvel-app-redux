@@ -26,13 +26,14 @@ const CharactersPage = () => {
       />
       <section>
         <div id="cards-container">
-          {
-            state.heroes?.map(hero => <CardComponent key={hero.id}
+          {state.heroes?.map((hero) => (
+            <CardComponent
+              key={hero.id}
               image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
               name={hero.name}
-            />)
-          }
-          
+              id={hero.id}
+            />
+          ))}
         </div>
       </section>
 

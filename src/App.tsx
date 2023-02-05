@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import CharactersPage from "./pages/CharactersPage";
 import ComicsPage from "./pages/ComicsPage";
+import CharacterDetailPage from "./pages/CharacterDetailPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/characters" element={<CharactersPage />} />
+          <Route path="/characters/:id" element={<CharacterDetailPage />} />
           <Route path="/comics" element={<ComicsPage />} />
         </Routes>
         <Footer />

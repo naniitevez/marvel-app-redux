@@ -9,9 +9,21 @@ export interface HeroesDataState {
   status?: Status;
   error?: string | null;
 }
+
+export interface HeroDetail {
+  id: number;
+  name: string;
+  description: string;
+  thumbnail: string;
+  comics: {};
+  status?: Status;
+  error?: string | null;
+}
+
 export interface HeroeCardProps {
   name: string;
   image: string;
+  id: number;
 }
 
 export interface ApiResponse {
@@ -30,4 +42,20 @@ export interface ApiDataResponse {
   total: number;
   count: number;
   results: [];
+}
+
+export interface DetailApiResponse {
+  id: number;
+  name: string;
+  description: string;
+  modified: string;
+  thumbnail: {};
+  resourceURI: string;
+  comics: {};
+  series: {};
+  stories: {};
+  events: {};
+  urls: [];
+  status?: Status;
+  error?: string | null;
 }
