@@ -2,7 +2,6 @@ import { Status } from "./types";
 
 export interface HeroesDataState {
   heroes: any[];
-  offset: number;
   count: number;
   limit: number;
   total: number;

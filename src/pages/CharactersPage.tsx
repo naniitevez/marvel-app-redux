@@ -26,10 +26,13 @@ const CharactersPage = () => {
       />
       <section>
         <div id="cards-container">
-          <CardComponent
-            image="http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"
-            name="Alguien"
-          />
+          {
+            state.heroes?.map(hero => <CardComponent key={hero.id}
+              image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
+              name={hero.name}
+            />)
+          }
+          
         </div>
       </section>
 

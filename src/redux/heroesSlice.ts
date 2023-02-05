@@ -5,7 +5,6 @@ import { RootState } from "./store";
 
 const initialState: HeroesDataState = {
   heroes: [],
-  offset: 0,
   count: 0,
   limit: 0,
   total: 0,
@@ -38,7 +37,6 @@ export const heroesSlice = createSlice({
       .addCase(fetchHeroes.fulfilled, (state, action) => {
         state.status = "succeced";
         state.heroes = action.payload.data.results;
-        console.log("PAYLOAD", action.payload)
         state.count = action.payload.data.count;
         state.limit = action.payload.data.limit;
         state.total = action.payload.data.total;
