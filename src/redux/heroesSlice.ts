@@ -5,6 +5,7 @@ import { RootState } from "./store";
 
 const initialState: HeroesDataState = {
   heroes: [],
+  heroDetail: [],
   limit: 0,
   total: 0,
   attributionHTML: "",
@@ -57,7 +58,7 @@ export const heroesSlice = createSlice({
       })
       .addCase(getHeroDetail.fulfilled, (state, action) => {
         state.status = "succeced";
-        state.heroes = action.payload.data.results;
+        state.heroDetail = action.payload.data.results;
       });
   },
 });

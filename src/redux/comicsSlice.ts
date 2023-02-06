@@ -6,6 +6,7 @@ import { RootState } from "./store";
 
 const initialState: ComicsDataState = {
   comics: [],
+  comicDetail: [],
   limit: 0,
   total: 0,
   status: "idle",
@@ -56,7 +57,7 @@ export const comicsSlice = createSlice({
       })
       .addCase(getComicDetail.fulfilled, (state, action) => {
         state.status = "succeced";
-        state.comics = action.payload.data.results;
+        state.comicDetail = action.payload.data.results;
       });
   },
 });

@@ -2,6 +2,7 @@ import { Status } from "./types";
 
 export interface HeroesDataState {
   heroes: any[];
+  heroDetail: any[];
   limit: number;
   total: number;
   attributionHTML: string;

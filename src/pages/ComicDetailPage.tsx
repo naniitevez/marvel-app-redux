@@ -1,35 +1,30 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import DetailComponent from "../components/DetailComponent";
 import { getComicDetail, getHeroComics } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const ComicDetailPage = () => {
   const dispatch = useAppDispatch();
   const state = useAppSelector(getHeroComics);
-  const comic = state.comics[0];
+  const comic = state.comicDetail[0];
 
   let { id } = useParams();
   const comicId = Number(id);
-  // console.log(comic);
 
   useEffect(() => {
     dispatch(getComicDetail(comicId));
   }, []);
+  
   return (
-    <main>
-      <section>
-        <div>
-          <h1>{comic.title}</h1>
-          <img
-            src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-            alt=""
-          />
-        </div>
-        <div className="text-container">
-          <p>{comic.description}</p>
-        </div>
-      </section>
-      <div className="price-container"></div>
+    <main id="comic-detail">
+      <DetailComponent
+        isComic={true}
+        name={comic.title}
+        image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+        description={comic.description}
+        price={comic.prices[0].price}
+      />
     </main>
   );
 };

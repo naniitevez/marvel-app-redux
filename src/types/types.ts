@@ -1,3 +1,5 @@
+import { ComicsProps } from "./comics";
+
 export interface LogoProps {
   logo: string;
 }
@@ -16,6 +18,15 @@ export interface ButtonComponentProps {
   variant?: string;
   text: string;
   handleClick: () => void;
+}
+
+export interface DetailComponentProps {
+  isComic: boolean;
+  name: string;
+  image: string;
+  description: string;
+  comics?: ComicsProps;
+  price?: number;
 }
 
 export type Status = 'idle' | 'loading' | 'failed' | 'succeced';
