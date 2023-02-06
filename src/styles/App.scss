@@ -7,6 +7,7 @@
   - Banner image
   - Hero section
   - Cards section
+  - Loader
   - Character detail page
 -------------------------------------------
 -----------------------------------------*/
@@ -115,6 +116,40 @@
   }
 }
 
+/*-----------------------------------------
+  Loader
+-----------------------------------------*/
+
+#loader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 999;
+  background: rgba(255,255,255,0.4);
+
+  & .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-bottom-color: variables.$red;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
 
 /*-----------------------------------------
   Character detail page
@@ -127,6 +162,5 @@
   }
 
   .comics-container {
-    
   }
 }
