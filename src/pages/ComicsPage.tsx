@@ -34,11 +34,12 @@ const ComicsPage = () => {
       <section className="cards-container">
         {state.comics?.map((comic) => (
           <CardComponent
+            isComic={true}
             key={comic.id}
             image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
             name={comic.title}
             id={comic.id}
-            price={comic.prices}
+            price={comic.prices[0].price}
           />
         ))}
       </section>

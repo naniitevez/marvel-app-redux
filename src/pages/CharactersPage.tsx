@@ -35,6 +35,7 @@ const CharactersPage = () => {
         <div className="cards-container">
           {state.heroes?.map((hero) => (
             <CardComponent
+              isComic={false}
               key={hero.id}
               image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
               name={hero.name}

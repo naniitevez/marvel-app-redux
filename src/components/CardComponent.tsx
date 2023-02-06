@@ -1,25 +1,36 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { HeroeCardProps } from "../types/heroes";
 import ButtonComponent from "./ButtonComponent";
 
-const CardComponent: React.FC<HeroeCardProps> = ({ name, image, id }) => {
+const CardComponent: React.FC<HeroeCardProps> = ({
+  isComic,
+  name,
+  image,
+  id,
+  price,
+}) => {
   let navigate = useNavigate();
 
-  const handleConsole = () => {
-    navigate(`/characters/${id}`);
+  const handleNavigate = () => {
+    if (isComic) {
+      navigate(`/comics/${id}`);
+    } else {
+      navigate(`/characters/${id}`);
+    }
   };
 
   return (
     <div className="card-item">
-      <Link to="" className="image-container">
+      <div onClick={handleNavigate} className="image-container">
+        {price && <span className="price-contant">${price}</span>}
         <img src={image} alt={name} />
-      </Link>
+      </div>
       <div className="text-container">
-        <Link to="">
+        <div>
           <p>{name}</p>
-        </Link>
-        <ButtonComponent text="Detalle" handleClick={handleConsole} />
+        </div>
+        <ButtonComponent text="Detalle" handleClick={handleNavigate} />
       </div>
     </div>
   );

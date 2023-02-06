@@ -42,3 +42,12 @@ export const fetchComics = async (offset: number): Promise<ApiResponse> => {
 
   return data;
 };
+
+export const getComic = async (id: number): Promise<ApiResponse> => {
+  const url = `${COMICS_URL}/${id}?${AUTH_PARAMS}`;
+
+  let response = await fetch(url);
+  let data = await response.json();
+
+  return data;
+};

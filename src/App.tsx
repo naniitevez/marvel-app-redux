@@ -10,6 +10,7 @@ import { store } from "./redux/store";
 import CharactersPage from "./pages/CharactersPage";
 import ComicsPage from "./pages/ComicsPage";
 import CharacterDetailPage from "./pages/CharacterDetailPage";
+import ComicDetailPage from "./pages/ComicDetailPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/characters" element={<CharactersPage />} />
           <Route path="/characters/:id" element={<CharacterDetailPage />} />
           <Route path="/comics" element={<ComicsPage />} />
+          <Route path="/comics/:id" element={<ComicDetailPage />} />
         </Routes>
         <Footer />
       </Router>

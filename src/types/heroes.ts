@@ -20,6 +20,7 @@ export interface HeroDetail {
 }
 
 export interface HeroeCardProps {
+  isComic: boolean;
   name: string;
   image: string;
   id: number;
