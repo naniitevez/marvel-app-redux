@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageBanner from "../components/ImageBanner";
 import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
@@ -8,6 +8,10 @@ import { fetchHeroes, getHeroes } from "../redux/heroesSlice";
 const CharactersPage = () => {
   const state = useAppSelector(getHeroes);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchHeroes(0));
+  }, []);
 
   const itemsCount = state.limit;
   const totalPages = Math.ceil(state.total / itemsCount);
@@ -24,8 +28,11 @@ const CharactersPage = () => {
         image="/assets/banner/characters.jpg"
         alt="Banner de personajes de Marvel"
       />
+      <div>
+        <h1>Personajes</h1>
+      </div>
       <section>
-        <div id="cards-container">
+        <div className="cards-container">
           {state.heroes?.map((hero) => (
             <CardComponent
               key={hero.id}

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { HeroeCardProps } from "../types/heroes";
 import ButtonComponent from "./ButtonComponent";
 
