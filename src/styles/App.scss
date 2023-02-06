@@ -7,6 +7,7 @@
   - Banner image
   - Hero section
   - Cards section
+  - Character detail page
 -------------------------------------------
 -----------------------------------------*/
 
@@ -111,5 +112,21 @@
         }
       }
     }
+  }
+}
+
+
+/*-----------------------------------------
+  Character detail page
+-----------------------------------------*/
+
+#character-detail {
+  .character-info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .comics-container {
+    
   }
 }

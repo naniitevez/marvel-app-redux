@@ -7,7 +7,9 @@ const CharacterDetailPage = () => {
   const dispatch = useAppDispatch();
   const state = useAppSelector(getHeroes)
   const character = state.heroes[0]
-  
+  const characterComics = character.comics;
+
+
   let { id } = useParams();
   const heroId = Number(id);
 
@@ -15,7 +17,20 @@ const CharacterDetailPage = () => {
     dispatch(getHeroDetail(heroId))
   }, []);
 
-  return <div>ID : {heroId}</div>;
+  return (
+    <main id="character-detail">
+      <section className="character-info">
+        <div className="image-container">
+          <h1>{character.name}</h1>
+          <img src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt="" />
+        </div>
+        <div className="text-container">
+          <p>{character.description}</p>
+        </div>
+      </section>
+      <div className="comics-container"></div>
+    </main>
+  );
 };
 
 export default CharacterDetailPage;
