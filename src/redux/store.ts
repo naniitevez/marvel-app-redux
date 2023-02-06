@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { comicsSlice } from "./comicsSlice";
 import { heroesSlice } from "./heroesSlice";
 
 export const store = configureStore({
   reducer: {
     heroes: heroesSlice.reducer,
+    comics: comicsSlice.reducer,
   },
 });
 

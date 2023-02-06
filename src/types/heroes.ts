@@ -2,7 +2,6 @@ import { Status } from "./types";
 
 export interface HeroesDataState {
   heroes: any[];
-  count: number;
   limit: number;
   total: number;
   attributionHTML: string;
@@ -24,6 +23,7 @@ export interface HeroeCardProps {
   name: string;
   image: string;
   id: number;
+  price?: number;
 }
 
 export interface ApiResponse {
