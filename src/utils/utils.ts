@@ -23,3 +23,12 @@ export const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
 
   return data;
 };
+
+export const getCharacter = async (id: number): Promise<ApiResponse> => {
+  const url = `${CHARACTERS_URL}/${id}?${AUTH_PARAMS}`;
+
+  let response = await fetch(url);
+  let data = await response.json();
+
+  return data;
+};

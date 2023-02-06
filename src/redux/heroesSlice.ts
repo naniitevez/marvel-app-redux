@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ApiResponse, HeroesDataState } from "../types/heroes";
-import { fetchCharacters } from "../utils/utils";
+import { fetchCharacters, getCharacter } from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: HeroesDataState = {
@@ -8,7 +8,7 @@ const initialState: HeroesDataState = {
   count: 0,
   limit: 0,
   total: 0,
-  attributionHTML: '',
+  attributionHTML: "",
   status: "idle",
   error: null,
 };
@@ -17,6 +17,14 @@ export const fetchHeroes = createAsyncThunk<ApiResponse, number>(
   "hero/fetchHeroes",
   async (offset) => {
     const response = await fetchCharacters(offset);
+    return response;
+  }
+);
+
+export const getHeroDetail = createAsyncThunk<ApiResponse, number>(
+  "hero/getHeroDetail",
+  async (id) => {
+    const response = await getCharacter(id);
     return response;
   }
 );
@@ -41,6 +49,17 @@ export const heroesSlice = createSlice({
         state.limit = action.payload.data.limit;
         state.total = action.payload.data.total;
         state.attributionHTML = action.payload.attributionHTML;
+      })
+      .addCase(getHeroDetail.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getHeroDetail.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getHeroDetail.fulfilled, (state, action) => {
+        state.status = "succeced";
+        state.heroes = action.payload.data.results;
       });
   },
 });
