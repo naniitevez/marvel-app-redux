@@ -28,8 +28,11 @@ const CharactersPage = () => {
         image="/assets/banner/characters.jpg"
         alt="Banner de personajes de Marvel"
       />
-      <div>
+      <div className="title-container">
         <h1>Personajes</h1>
+      </div>
+      <div className="separator">
+        <span></span>
       </div>
       <section>
         <div className="cards-container">

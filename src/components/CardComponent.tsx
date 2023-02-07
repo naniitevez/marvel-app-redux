@@ -23,13 +23,11 @@ const CardComponent: React.FC<HeroeCardProps> = ({
   return (
     <div className="card-item">
       <div onClick={handleNavigate} className="image-container">
-        {price && <span className="price-contant">${price}</span>}
+        {price !== undefined && <div className="price-content">${price}</div>}
         <img src={image} alt={name} />
       </div>
       <div className="text-container">
-        <div>
-          <p>{name}</p>
-        </div>
+        <p>{name}</p>
         <ButtonComponent text="Detalle" handleClick={handleNavigate} />
       </div>
     </div>

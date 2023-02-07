@@ -20,12 +20,24 @@
   text-align: center;
 }
 
+.separator {
+  width: 100%;
+  margin-top: 2rem;
+
+  & span {
+    background: variables.$red;
+    width: 80%;
+    height: 1px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 /*-----------------------------------------
   Banner image
 -----------------------------------------*/
 
 .banner-container {
-  background: blue;
   width: 100vw;
   height: 200px;
 
@@ -54,9 +66,15 @@
   Cards section
 -----------------------------------------*/
 
-#characters-page {
+#characters-page,
+#comics-page {
+  & .title-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
   & section {
-    // background: blue;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -76,7 +94,7 @@
 
   & .card-item {
     width: 255px;
-    height: 350px;
+    height: 355px;
     margin: 0 1.5rem 1.5rem;
 
     & .image-container {
@@ -87,6 +105,17 @@
 
       &:hover {
         transform: translate(0px, -10px);
+      }
+
+      & .price-content {
+        background: variables.$blue;
+        color: #fff;
+        font-weight: 400;
+        width: 3rem;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
       }
 
       & img {
@@ -103,14 +132,13 @@
       justify-content: space-between;
       align-items: baseline;
 
-      & a {
-        text-decoration: none;
-
-        & p {
-          color: variables.$black;
-          font-size: 16px;
-          font-weight: 500;
-        }
+      & p {
+        color: variables.$black;
+        font-size: 16px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 55px;
       }
     }
   }
@@ -128,7 +156,7 @@
   align-items: center;
   position: absolute;
   z-index: 999;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
 
   & .loader {
     width: 48px;

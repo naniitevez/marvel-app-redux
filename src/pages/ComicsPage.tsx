@@ -23,25 +23,30 @@ const ComicsPage = () => {
   };
 
   return (
-    <main>
+    <main id="comics-page">
       <ImageBanner
         image="/assets/banner/characters.jpg"
         alt="Banner de personajes de Marvel"
       />
-      <div>
+      <div className="title-container">
         <h1>Cómics</h1>
       </div>
-      <section className="cards-container">
-        {state.comics?.map((comic) => (
-          <CardComponent
-            isComic={true}
-            key={comic.id}
-            image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-            name={comic.title}
-            id={comic.id}
-            price={comic.prices[0].price}
-          />
-        ))}
+      <div className="separator">
+        <span></span>
+      </div>
+      <section>
+        <div className="cards-container">
+          {state.comics?.map((comic) => (
+            <CardComponent
+              isComic={true}
+              key={comic.id}
+              image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+              name={comic.title}
+              id={comic.id}
+              price={comic.prices[0].price}
+            />
+          ))}
+        </div>
       </section>
 
       <PaginationComponent
