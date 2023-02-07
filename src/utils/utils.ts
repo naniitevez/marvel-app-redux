@@ -1,5 +1,5 @@
 import { MD5 } from "crypto-js";
-import { ApiResponse } from "../types/heroes";
+import { ApiResponse } from "../types/characters";
 import apiClient from "./client";
 import { ITEM_LIMIT, PRIVATE_KEY, PUBLIC_KEY } from "./constants";
 
@@ -22,7 +22,7 @@ export const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
   return response.data;
 };
 
-export const getCharacter = async (id: number): Promise<ApiResponse> => {
+export const fetchCharacterDetail = async (id: number): Promise<ApiResponse> => {
   const response = await apiClient.get(`/characters/${id}?${AUTH_PARAMS}`);
   return response.data;
 };
@@ -34,7 +34,7 @@ export const fetchComics = async (offset: number): Promise<ApiResponse> => {
   return response.data;
 };
 
-export const getComic = async (id: number): Promise<ApiResponse> => {
+export const fetchComic = async (id: number): Promise<ApiResponse> => {
   const response = await apiClient.get(`/comics/${id}?${AUTH_PARAMS}`);
   return response.data;
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { HeroeCardProps } from "../types/heroes";
+import { CardProps } from "../types/characters";
 import ButtonComponent from "./ButtonComponent";
 
-const CardComponent: React.FC<HeroeCardProps> = ({
+const CardComponent: React.FC<CardProps> = ({
   isComic,
   name,
   image,

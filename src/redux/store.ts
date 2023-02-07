@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { comicsSlice } from "./comicsSlice";
-import { heroesSlice } from "./heroesSlice";
+import { charactersSlice } from "./charactersSlice";
 
 export const store = configureStore({
   reducer: {
-    heroes: heroesSlice.reducer,
+    characters: charactersSlice.reducer,
     comics: comicsSlice.reducer,
   },
 });

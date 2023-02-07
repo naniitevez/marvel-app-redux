@@ -3,11 +3,11 @@ import ImageBanner from "../components/ImageBanner";
 import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { fetchHeroes, getHeroes } from "../redux/heroesSlice";
+import { getCharacters, getAllCharacters } from "../redux/charactersSlice";
 import { LoadRemove, LoadStart } from "../components/Loading";
 
 const CharactersPage = () => {
-  const state = useAppSelector(getHeroes);
+  const state = useAppSelector(getAllCharacters);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const CharactersPage = () => {
   }, [state.status]);
 
   useEffect(() => {
-    dispatch(fetchHeroes(0));
+    dispatch(getCharacters(0));
   }, []);
 
   const itemsCount = state.limit;
@@ -29,7 +29,7 @@ const CharactersPage = () => {
   const handlePageClick = (data: { selected: number }) => {
     const offset = itemsCount * data.selected;
 
-    dispatch(fetchHeroes(offset));
+    dispatch(getCharacters(offset));
   };
 
   return (
@@ -46,13 +46,13 @@ const CharactersPage = () => {
       </div>
       <section>
         <div className="cards-container">
-          {state.heroes?.map((hero) => (
+          {state.characters?.map((character) => (
             <CardComponent
               isComic={false}
-              key={hero.id}
-              image={`${hero.thumbnail.path}.${hero.thumbnail.extension}`}
-              name={hero.name}
-              id={hero.id}
+              key={character.id}
+              image={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              name={character.name}
+              id={character.id}
             />
           ))}
         </div>

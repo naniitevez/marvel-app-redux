@@ -3,11 +3,11 @@ import CardComponent from "../components/CardComponent";
 import ImageBanner from "../components/ImageBanner";
 import { LoadRemove, LoadStart } from "../components/Loading";
 import PaginationComponent from "../components/PaginationComponent";
-import { fetchHeroComics, getHeroComics } from "../redux/comicsSlice";
+import { getComics, getAllComics } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const ComicsPage = () => {
-  const state = useAppSelector(getHeroComics);
+  const state = useAppSelector(getAllComics);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ComicsPage = () => {
   }, [state.status]);
 
   useEffect(() => {
-    dispatch(fetchHeroComics(0));
+    dispatch(getComics(0));
   }, []);
 
   const itemsCount = state.limit;
@@ -29,7 +29,7 @@ const ComicsPage = () => {
   const handlePageClick = (data: { selected: number }) => {
     const offset = itemsCount * data.selected;
 
-    dispatch(fetchHeroComics(offset));
+    dispatch(getComics(offset));
   };
 
   return (

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DetailComponent from "../components/DetailComponent";
 import { LoadRemove, LoadStart } from "../components/Loading";
-import { getComicDetail, getHeroComics } from "../redux/comicsSlice";
+import { getComicDetail, getAllComics } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const ComicDetailPage = () => {
   const dispatch = useAppDispatch();
-  const state = useAppSelector(getHeroComics);
+  const state = useAppSelector(getAllComics);
   const comic = state?.comicDetail[0];
 
   let { id } = useParams();

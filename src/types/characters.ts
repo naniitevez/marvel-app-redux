@@ -1,8 +1,8 @@
 import { Status } from "./types";
 
-export interface HeroesDataState {
-  heroes: any[];
-  heroDetail: any[];
+export interface CharactersDataState {
+  characters: any[];
+  characterDetail: any[];
   limit: number;
   total: number;
   attributionHTML: string;
@@ -10,7 +10,7 @@ export interface HeroesDataState {
   error?: string | null;
 }
 
-export interface HeroDetail {
+export interface CharacterDetail {
   id: number;
   name: string;
   description: string;
@@ -20,7 +20,7 @@ export interface HeroDetail {
   error?: string | null;
 }
 
-export interface HeroeCardProps {
+export interface CardProps {
   isComic: boolean;
   name: string;
   image: string;
