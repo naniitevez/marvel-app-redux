@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DetailComponent from "../components/DetailComponent";
+import { LoadRemove, LoadStart } from "../components/Loading";
 import { getHeroDetail, getHeroes } from "../redux/heroesSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
@@ -12,6 +13,15 @@ const CharacterDetailPage = () => {
 
   let { id } = useParams();
   const heroId = Number(id);
+
+  useEffect(() => {
+    if (state.status === "loading") {
+      LoadStart();
+    }
+    if (state.status === "succeced") {
+      LoadRemove();
+    }
+  }, [state.status]);
 
   useEffect(() => {
     dispatch(getHeroDetail(heroId));

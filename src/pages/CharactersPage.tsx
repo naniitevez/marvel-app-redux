@@ -4,10 +4,20 @@ import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchHeroes, getHeroes } from "../redux/heroesSlice";
+import { LoadRemove, LoadStart } from "../components/Loading";
 
 const CharactersPage = () => {
   const state = useAppSelector(getHeroes);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (state.status === "loading") {
+      LoadStart();
+    }
+    if (state.status === "succeced") {
+      LoadRemove();
+    }
+  }, [state.status]);
 
   useEffect(() => {
     dispatch(fetchHeroes(0));
