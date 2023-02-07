@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 const ComicDetailPage = () => {
   const dispatch = useAppDispatch();
   const state = useAppSelector(getHeroComics);
-  const comic = state.comicDetail[0];
+  const comic = state?.comicDetail[0];
 
   let { id } = useParams();
   const comicId = Number(id);
@@ -20,10 +20,10 @@ const ComicDetailPage = () => {
     <main id="comic-detail">
       <DetailComponent
         isComic={true}
-        name={comic.title}
-        image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-        description={comic.description}
-        price={comic.prices[0].price}
+        name={comic?.title}
+        image={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
+        description={comic?.description}
+        price={comic?.prices[0].price}
       />
     </main>
   );

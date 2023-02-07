@@ -1,18 +1,17 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
+import { PaginationProps } from "../types/types";
 
-interface props {
-  handleClick: any;
-  pageCount: number | undefined;
-}
-
-const PaginationComponent: React.FC<props> = ({ handleClick, pageCount }) => {
+const PaginationComponent: React.FC<PaginationProps> = ({
+  handleClick,
+  pageCount,
+}) => {
   return (
     <ReactPaginate
       previousLabel={"<"}
       nextLabel={">"}
       breakLabel={"..."}
-      pageCount={pageCount === undefined ? 1 : pageCount}
+      pageCount={pageCount}
       marginPagesDisplayed={2}
       pageRangeDisplayed={3}
       onPageChange={handleClick}

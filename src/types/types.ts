@@ -29,4 +29,9 @@ export interface DetailComponentProps {
   price?: number;
 }
 
-export type Status = 'idle' | 'loading' | 'failed' | 'succeced';
+export interface PaginationProps {
+  handleClick: (data: { selected: number }) => void;
+  pageCount: number;
+}
+
+export type Status = "idle" | "loading" | "failed" | "succeced";
