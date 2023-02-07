@@ -1,10 +1,10 @@
 import React from "react";
 import { useAppSelector } from "../../redux/hooks";
-import { getAllCharacters } from "../../redux/charactersSlice"
+import { getAllCharactersState } from "../../redux/charactersSlice"
 import "../../styles/Footer.scss";
 
 const Footer = () => {
-  const state = useAppSelector(getAllCharacters)
+  const state = useAppSelector(getAllCharactersState)
   return (
     <footer dangerouslySetInnerHTML={{ __html: state.attributionHTML }}>
     </footer>

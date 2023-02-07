@@ -62,6 +62,6 @@ export const comicsSlice = createSlice({
   },
 });
 
-export const getAllComics = (state: RootState) => state.comics;
+export const getAllComicsState = (state: RootState) => state.comics;
 
 export default comicsSlice.reducer;

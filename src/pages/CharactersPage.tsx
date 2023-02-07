@@ -3,11 +3,11 @@ import ImageBanner from "../components/ImageBanner";
 import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getCharacters, getAllCharacters } from "../redux/charactersSlice";
+import { getCharacters, getAllCharactersState } from "../redux/charactersSlice";
 import { LoadRemove, LoadStart } from "../components/Loading";
 
 const CharactersPage = () => {
-  const state = useAppSelector(getAllCharacters);
+  const state = useAppSelector(getAllCharactersState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import DetailComponent from "../components/DetailComponent";
 import { LoadRemove, LoadStart } from "../components/Loading";
-import { getCharacterDetail, getAllCharacters } from "../redux/charactersSlice";
+import { getCharacterDetail, getCharacterDetailState } from "../redux/characterDetailSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const CharacterDetailPage = () => {
   const dispatch = useAppDispatch();
-  const state = useAppSelector(getAllCharacters);
+  const state = useAppSelector(getCharacterDetailState);
+  console.log(state)
 
   let { id } = useParams();
   const characterId = Number(id);

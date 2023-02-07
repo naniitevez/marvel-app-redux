@@ -10,6 +10,15 @@ export interface CharactersDataState {
   error?: string | null;
 }
 
+export interface CharacterDetailDataState {
+  detail: any[];
+  comics: any[];
+  series: any[];
+  stories: any[];
+  status?: Status;
+  error?: string | null;
+}
+
 export interface CharacterDetail {
   id: number;
   name: string;
