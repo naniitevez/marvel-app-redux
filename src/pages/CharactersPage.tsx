@@ -7,24 +7,26 @@ import { getCharacters, getAllCharactersState } from "../redux/charactersSlice";
 import { LoadRemove, LoadStart } from "../components/Loading";
 
 const CharactersPage = () => {
-  const state = useAppSelector(getAllCharactersState);
+  const { status, limit, total, characters } = useAppSelector(
+    getAllCharactersState
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (state.status === "loading") {
+    if (status === "loading") {
       LoadStart();
     }
-    if (state.status === "succeced") {
+    if (status === "succeced") {
       LoadRemove();
     }
-  }, [state.status]);
+  }, [status]);
 
   useEffect(() => {
     dispatch(getCharacters(0));
   }, []);
 
-  const itemsCount = state.limit;
-  const totalPages = Math.ceil(state.total / itemsCount);
+  const itemsCount = limit;
+  const totalPages = Math.ceil(total / itemsCount);
 
   const handlePageClick = (data: { selected: number }) => {
     const offset = itemsCount * data.selected;
@@ -46,7 +48,7 @@ const CharactersPage = () => {
       </div>
       <section>
         <div className="cards-container">
-          {state.characters?.map((character) => (
+          {characters?.map((character) => (
             <CardComponent
               isComic={false}
               key={character.id}

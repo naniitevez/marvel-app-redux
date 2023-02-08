@@ -20,13 +20,10 @@ export interface ButtonComponentProps {
   handleClick: () => void;
 }
 
-export interface DetailComponentProps {
-  isComic: boolean;
+export interface CharacterDetailComponentProps {
   name: string;
   image: string;
   description: string;
-  comics?: ComicsProps;
-  price?: number;
 }
 
 export interface PaginationProps {

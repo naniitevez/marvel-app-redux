@@ -7,24 +7,24 @@ import { getComics, getAllComicsState } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const ComicsPage = () => {
-  const state = useAppSelector(getAllComicsState);
+  const { status, limit, total, comics } = useAppSelector(getAllComicsState);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (state.status === "loading") {
+    if (status === "loading") {
       LoadStart();
     }
-    if (state.status === "succeced") {
+    if (status === "succeced") {
       LoadRemove();
     }
-  }, [state.status]);
+  }, [status]);
 
   useEffect(() => {
     dispatch(getComics(0));
   }, []);
 
-  const itemsCount = state.limit;
-  const totalPages = Math.ceil(state.total / itemsCount);
+  const itemsCount = limit;
+  const totalPages = Math.ceil(total / itemsCount);
 
   const handlePageClick = (data: { selected: number }) => {
     const offset = itemsCount * data.selected;
@@ -46,7 +46,7 @@ const ComicsPage = () => {
       </div>
       <section>
         <div className="cards-container">
-          {state.comics?.map((comic) => (
+          {comics?.map((comic) => (
             <CardComponent
               isComic={true}
               key={comic.id}

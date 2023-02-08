@@ -22,7 +22,9 @@ export const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
   return response.data;
 };
 
-export const fetchCharacterDetail = async (id: number): Promise<ApiResponse> => {
+export const fetchCharacterDetail = async (
+  id: number
+): Promise<ApiResponse> => {
   const response = await apiClient.get(`/characters/${id}?${AUTH_PARAMS}`);
   return response.data;
 };
@@ -36,5 +38,14 @@ export const fetchComics = async (offset: number): Promise<ApiResponse> => {
 
 export const fetchComic = async (id: number): Promise<ApiResponse> => {
   const response = await apiClient.get(`/comics/${id}?${AUTH_PARAMS}`);
+  return response.data;
+};
+
+export const fetchCharacterComics = async (
+  id: number
+): Promise<ApiResponse> => {
+  const response = await apiClient.get(
+    `/comics?characters=${id}&${AUTH_PARAMS}`
+  );
   return response.data;
 };

@@ -1,26 +1,26 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import DetailComponent from "../components/DetailComponent";
+import ComicDetailComponent from "../components/comics/ComicDetailComponent";
 import { LoadRemove, LoadStart } from "../components/Loading";
 import { getComicDetail, getAllComicsState } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const ComicDetailPage = () => {
   const dispatch = useAppDispatch();
-  const state = useAppSelector(getAllComicsState);
-  const comic = state?.comicDetail[0];
+  const { comicDetail, status } = useAppSelector(getAllComicsState);
+  const comic = comicDetail[0];
 
   let { id } = useParams();
   const comicId = Number(id);
 
   useEffect(() => {
-    if (state.status === "loading") {
+    if (status === "loading") {
       LoadStart();
     }
-    if (state.status === "succeced") {
+    if (status === "succeced") {
       LoadRemove();
     }
-  }, [state.status]);
+  }, [status]);
 
   useEffect(() => {
     dispatch(getComicDetail(comicId));
@@ -28,13 +28,7 @@ const ComicDetailPage = () => {
 
   return (
     <main id="comic-detail">
-      <DetailComponent
-        isComic={true}
-        name={comic?.title}
-        image={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
-        description={comic?.description}
-        price={comic?.prices[0].price}
-      />
+      <ComicDetailComponent />
     </main>
   );
 };
