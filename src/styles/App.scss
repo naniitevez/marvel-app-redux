@@ -33,6 +33,10 @@
   }
 }
 
+.tab-container-component {
+  
+}
+
 /*-----------------------------------------
   Banner image
 -----------------------------------------*/
@@ -122,6 +126,7 @@
         width: 100%;
         height: 300px;
         border-radius: 5px;
+        cursor: pointer;
       }
     }
 
@@ -131,6 +136,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: baseline;
+      cursor: pointer;
 
       & p {
         color: variables.$black;
@@ -139,6 +145,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-height: 55px;
+
+        &:hover {
+          color: variables.$blue;
+        }
       }
     }
   }

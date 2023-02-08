@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ApiResponse, CharacterDetailDataState } from "../types/characters";
-import { fetchCharacterDetail } from "../utils/utils";
+import { ApiResponse, CharacterComicRequestProps, CharacterDetailDataState } from "../types/characters";
+import { fetchCharacterComics, fetchCharacterDetail } from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: CharacterDetailDataState = {
@@ -13,9 +13,17 @@ const initialState: CharacterDetailDataState = {
 };
 
 export const getCharacterDetail = createAsyncThunk<ApiResponse, number>(
-  "characters/getCharacterDetail",
+  "charactersDetail/getCharacterDetail",
   async (id) => {
     const response = await fetchCharacterDetail(id);
+    return response;
+  }
+);
+
+export const getCharacterComics = createAsyncThunk<ApiResponse, CharacterComicRequestProps>(
+  "charactersDetail/getCharacterComics",
+  async ({id, limit}) => {
+    const response = await fetchCharacterComics(id, limit);
     return response;
   }
 );
@@ -36,9 +44,21 @@ export const characterDetailSlice = createSlice({
       .addCase(getCharacterDetail.fulfilled, (state, action) => {
         state.status = "succeced";
         state.detail = action.payload.data.results;
+      })
+      .addCase(getCharacterComics.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getCharacterComics.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCharacterComics.fulfilled, (state, action) => {
+        state.status = "succeced";
+        state.comics = action.payload.data.results;
       });
   },
 });
 
-export const getCharacterDetailState = (state: RootState) => state.characterDetail;
+export const getCharacterDetailState = (state: RootState) =>
+  state.characterDetail;
 export default characterDetailSlice.reducer;

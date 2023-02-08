@@ -21,6 +21,8 @@ export interface ButtonComponentProps {
 }
 
 export interface CharacterDetailComponentProps {
+  id: number;
+  totalComics: number;
   name: string;
   image: string;
   description: string;
@@ -29,6 +31,11 @@ export interface CharacterDetailComponentProps {
 export interface PaginationProps {
   handleClick: (data: { selected: number }) => void;
   pageCount: number;
+}
+
+export interface TabComponentProps {
+  id: number;
+  limit: number;
 }
 
 export type Status = "idle" | "loading" | "failed" | "succeced";

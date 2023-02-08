@@ -5,7 +5,6 @@ import { RootState } from "./store";
 
 const initialState: CharactersDataState = {
   characters: [],
-  characterDetail: [],
   limit: 0,
   total: 0,
   attributionHTML: "",

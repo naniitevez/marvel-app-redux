@@ -28,7 +28,6 @@ const CardComponent: React.FC<CardProps> = ({
       </div>
       <div className="text-container">
         <p>{name}</p>
-        <ButtonComponent text="Detalle" handleClick={handleNavigate} />
       </div>
     </div>
   );

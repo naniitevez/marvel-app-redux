@@ -2,7 +2,6 @@ import { Status } from "./types";
 
 export interface CharactersDataState {
   characters: any[];
-  characterDetail: any[];
   limit: number;
   total: number;
   attributionHTML: string;
@@ -55,18 +54,35 @@ export interface ApiDataResponse {
   results: [];
 }
 
-export interface DetailApiResponse {
+export interface CharacterDetailApiResponse {
   id: number;
   name: string;
   description: string;
   modified: string;
-  thumbnail: {};
+  thumbnail: ThumbnailProps;
   resourceURI: string;
-  comics: {};
+  comics: CharacterComicProps;
   series: {};
   stories: {};
   events: {};
   urls: [];
   status?: Status;
   error?: string | null;
+}
+
+interface CharacterComicProps {
+  available: number;
+  collectionURI: string;
+  items: [];
+  returned: number;
+}
+
+export interface CharacterComicRequestProps {
+  id: number;
+  limit: number;
+}
+
+interface ThumbnailProps {
+  path: string;
+  extension: string;
 }

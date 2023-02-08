@@ -13,8 +13,7 @@ const CharacterDetailPage = () => {
   const dispatch = useAppDispatch();
   const { detail, status } = useAppSelector(getCharacterDetailState);
   const character: CharacterDetailApiResponse = detail[0];
-  const characterImage = `${character.thumbnail.path}.${character.thumbnail.extension}`;
-  console.log(character);
+  const characterImage = `${character?.thumbnail.path}.${character?.thumbnail.extension}`;
 
   let { id } = useParams();
   const characterId = Number(id);
@@ -35,9 +34,11 @@ const CharacterDetailPage = () => {
   return (
     <main id="character-detail">
       <CharacterDetailComponent
-        name={character.name}
+        id={character?.id}
+        totalComics={character?.comics.available}
+        name={character?.name}
         image={`${characterImage}`}
-        description={character.description}
+        description={character?.description}
       />
     </main>
   );

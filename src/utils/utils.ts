@@ -42,10 +42,11 @@ export const fetchComic = async (id: number): Promise<ApiResponse> => {
 };
 
 export const fetchCharacterComics = async (
-  id: number
+  id: number,
+  limit:number
 ): Promise<ApiResponse> => {
   const response = await apiClient.get(
-    `/comics?characters=${id}&${AUTH_PARAMS}`
+    `/comics?characters=${id}&${AUTH_PARAMS}&limit=${limit}`
   );
   return response.data;
 };
