@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
+import { Tab, Tabs } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import CharacterDetailComponent from "../components/characters/CharacterDetailComponent";
 import { LoadRemove, LoadStart } from "../components/Loading";
+import ComicsTabComponent from "../components/tabs/ComicsTabComponent";
+import SeriesTabComponent from "../components/tabs/SeriesTabComponent";
 import {
   getCharacterDetail,
   getCharacterDetailState,
 } from "../redux/characterDetailSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { CharacterDetailApiResponse } from "../types/characters";
+import "../styles/DetailPage.scss";
 
 const CharacterDetailPage = () => {
   const dispatch = useAppDispatch();
   const { detail, status } = useAppSelector(getCharacterDetailState);
   const character: CharacterDetailApiResponse = detail[0];
   const characterImage = `${character?.thumbnail.path}.${character?.thumbnail.extension}`;
+  const totalComics = character?.comics.available;
 
   let { id } = useParams();
   const characterId = Number(id);
@@ -33,13 +37,37 @@ const CharacterDetailPage = () => {
 
   return (
     <main id="character-detail">
-      <CharacterDetailComponent
-        id={character?.id}
-        totalComics={character?.comics.available}
-        name={character?.name}
-        image={`${characterImage}`}
-        description={character?.description}
-      />
+      <header
+        className="detail-header"
+        style={{ backgroundImage: `url(${characterImage})` }}
+      >
+        <div className="gradient"></div>
+        <section className="detail-info">
+          <div className="image-container">
+            <img src={characterImage} alt={character?.name} />
+          </div>
+          <div className="text-container">
+            <div className="title-container">
+              <h1>{character?.name}</h1>
+            </div>
+            <div className="description">
+              <p>{character?.description}</p>
+            </div>
+          </div>
+        </section>
+      </header>
+      <section className="tabs-section">
+        {character?.id && (
+          <Tabs defaultActiveKey="comics" className="mb-3">
+            <Tab eventKey="comics" title="Cómics">
+              <ComicsTabComponent id={character?.id} limit={totalComics} />
+            </Tab>
+            <Tab eventKey="series" title="Series">
+              <SeriesTabComponent id={character?.id} limit={totalComics} />
+            </Tab>
+          </Tabs>
+        )}
+      </section>
     </main>
   );
 };

@@ -60,13 +60,3 @@ export const fetchCharacterSeries = async (
   );
   return response.data;
 };
-
-export const fetchCharacterStories = async (
-  id: number,
-  limit: number
-): Promise<ApiResponse> => {
-  const response = await apiClient.get(
-    `/stories?characters=${id}&${AUTH_PARAMS}&limit=${limit}`
-  );
-  return response.data;
-};

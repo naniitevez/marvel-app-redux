@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CardProps } from "../types/characters";
-import ButtonComponent from "./ButtonComponent";
+import '../styles/CardComponent.scss'
 
 const CardComponent: React.FC<CardProps> = ({
   isComic,

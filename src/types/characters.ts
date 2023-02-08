@@ -13,7 +13,6 @@ export interface CharacterDetailDataState {
   detail: any[];
   comics: any[];
   series: any[];
-  stories: any[];
   status?: Status;
   error?: string | null;
 }

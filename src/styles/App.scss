@@ -8,7 +8,6 @@
   - Hero section
   - Cards section
   - Loader
-  - Character detail page
 -------------------------------------------
 -----------------------------------------*/
 
@@ -34,7 +33,6 @@
 }
 
 .tab-container-component {
-  
 }
 
 /*-----------------------------------------
@@ -95,63 +93,6 @@
   grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
   grid-template-rows: auto;
   grid-auto-flow: dense;
-
-  & .card-item {
-    width: 255px;
-    height: 355px;
-    margin: 0 1.5rem 1.5rem;
-
-    & .image-container {
-      display: block;
-      margin-bottom: 15px;
-      box-shadow: 0 26px 24px -16px rgba(0, 0, 0, 0.4);
-      transition: all 0.14s ease-in-out;
-
-      &:hover {
-        transform: translate(0px, -10px);
-      }
-
-      & .price-content {
-        background: variables.$blue;
-        color: #fff;
-        font-weight: 400;
-        width: 3rem;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        border-radius: 5px;
-      }
-
-      & img {
-        width: 100%;
-        height: 300px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-    }
-
-    & .text-container {
-      padding: 0 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: baseline;
-      cursor: pointer;
-
-      & p {
-        color: variables.$black;
-        font-size: 16px;
-        font-weight: 500;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-height: 55px;
-
-        &:hover {
-          color: variables.$blue;
-        }
-      }
-    }
-  }
 }
 
 /*-----------------------------------------
@@ -186,19 +127,5 @@
     100% {
       transform: rotate(360deg);
     }
-  }
-}
-
-/*-----------------------------------------
-  Character detail page
------------------------------------------*/
-
-#character-detail {
-  .character-info {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .comics-container {
   }
 }

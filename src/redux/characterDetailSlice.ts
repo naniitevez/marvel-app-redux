@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ApiResponse, CharacterRequestProps, CharacterDetailDataState } from "../types/characters";
-import { fetchCharacterComics, fetchCharacterDetail, fetchCharacterSeries, fetchCharacterStories } from "../utils/utils";
+import {
+  ApiResponse,
+  CharacterRequestProps,
+  CharacterDetailDataState,
+} from "../types/characters";
+import {
+  fetchCharacterComics,
+  fetchCharacterDetail,
+  fetchCharacterSeries,
+} from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: CharacterDetailDataState = {
   detail: [],
   comics: [],
   series: [],
-  stories: [],
   status: "idle",
   error: null,
 };
@@ -20,29 +27,21 @@ export const getCharacterDetail = createAsyncThunk<ApiResponse, number>(
   }
 );
 
-export const getCharacterComics = createAsyncThunk<ApiResponse, CharacterRequestProps>(
-  "charactersDetail/getCharacterComics",
-  async ({id, limit}) => {
-    const response = await fetchCharacterComics(id, limit);
-    return response;
-  }
-);
+export const getCharacterComics = createAsyncThunk<
+  ApiResponse,
+  CharacterRequestProps
+>("charactersDetail/getCharacterComics", async ({ id, limit }) => {
+  const response = await fetchCharacterComics(id, limit);
+  return response;
+});
 
-export const getCharacterSeries = createAsyncThunk<ApiResponse, CharacterRequestProps>(
-  "charactersDetail/getCharacterSeries",
-  async ({id, limit}) => {
-    const response = await fetchCharacterSeries(id, limit);
-    return response;
-  }
-);
-
-export const getCharacterStories = createAsyncThunk<ApiResponse, CharacterRequestProps>(
-  "charactersDetail/getCharacterStories",
-  async ({id, limit}) => {
-    const response = await fetchCharacterStories(id, limit);
-    return response;
-  }
-);
+export const getCharacterSeries = createAsyncThunk<
+  ApiResponse,
+  CharacterRequestProps
+>("charactersDetail/getCharacterSeries", async ({ id, limit }) => {
+  const response = await fetchCharacterSeries(id, limit);
+  return response;
+});
 
 export const characterDetailSlice = createSlice({
   name: "charactersDetail",
@@ -82,17 +81,6 @@ export const characterDetailSlice = createSlice({
       .addCase(getCharacterSeries.fulfilled, (state, action) => {
         state.status = "succeced";
         state.series = action.payload.data.results;
-      })
-      .addCase(getCharacterStories.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      })
-      .addCase(getCharacterStories.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(getCharacterStories.fulfilled, (state, action) => {
-        state.status = "succeced";
-        state.stories = action.payload.data.results;
       });
   },
 });
