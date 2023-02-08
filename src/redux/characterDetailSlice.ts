@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ApiResponse, CharacterComicRequestProps, CharacterDetailDataState } from "../types/characters";
-import { fetchCharacterComics, fetchCharacterDetail } from "../utils/utils";
+import { ApiResponse, CharacterRequestProps, CharacterDetailDataState } from "../types/characters";
+import { fetchCharacterComics, fetchCharacterDetail, fetchCharacterSeries, fetchCharacterStories } from "../utils/utils";
 import { RootState } from "./store";
 
 const initialState: CharacterDetailDataState = {
@@ -20,10 +20,26 @@ export const getCharacterDetail = createAsyncThunk<ApiResponse, number>(
   }
 );
 
-export const getCharacterComics = createAsyncThunk<ApiResponse, CharacterComicRequestProps>(
+export const getCharacterComics = createAsyncThunk<ApiResponse, CharacterRequestProps>(
   "charactersDetail/getCharacterComics",
   async ({id, limit}) => {
     const response = await fetchCharacterComics(id, limit);
+    return response;
+  }
+);
+
+export const getCharacterSeries = createAsyncThunk<ApiResponse, CharacterRequestProps>(
+  "charactersDetail/getCharacterSeries",
+  async ({id, limit}) => {
+    const response = await fetchCharacterSeries(id, limit);
+    return response;
+  }
+);
+
+export const getCharacterStories = createAsyncThunk<ApiResponse, CharacterRequestProps>(
+  "charactersDetail/getCharacterStories",
+  async ({id, limit}) => {
+    const response = await fetchCharacterStories(id, limit);
     return response;
   }
 );
@@ -55,6 +71,28 @@ export const characterDetailSlice = createSlice({
       .addCase(getCharacterComics.fulfilled, (state, action) => {
         state.status = "succeced";
         state.comics = action.payload.data.results;
+      })
+      .addCase(getCharacterSeries.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getCharacterSeries.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCharacterSeries.fulfilled, (state, action) => {
+        state.status = "succeced";
+        state.series = action.payload.data.results;
+      })
+      .addCase(getCharacterStories.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getCharacterStories.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCharacterStories.fulfilled, (state, action) => {
+        state.status = "succeced";
+        state.stories = action.payload.data.results;
       });
   },
 });

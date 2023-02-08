@@ -2,6 +2,8 @@ import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { CharacterDetailComponentProps } from "../../types/types";
 import ComicsTabComponent from "../tabs/ComicsTabComponent";
+import SeriesTabComponent from "../tabs/SeriesTabComponent";
+import StoriesTabComponent from "../tabs/StoriesTabComponent";
 
 const CharacterDetailComponent: React.FC<CharacterDetailComponentProps> = ({
   id,
@@ -10,7 +12,6 @@ const CharacterDetailComponent: React.FC<CharacterDetailComponentProps> = ({
   image,
   description,
 }) => {
-
   return (
     <div>
       <section className="detail-component">
@@ -33,10 +34,10 @@ const CharacterDetailComponent: React.FC<CharacterDetailComponentProps> = ({
               <ComicsTabComponent id={id} limit={totalComics} />
             </Tab>
             <Tab eventKey="series" title="Series">
-              Algo 2
+              <SeriesTabComponent id={id} limit={totalComics} />
             </Tab>
             <Tab eventKey="stories" title="Historias">
-              Algo 3
+              <StoriesTabComponent id={id} limit={totalComics} />
             </Tab>
           </Tabs>
         )}

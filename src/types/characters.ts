@@ -77,7 +77,7 @@ interface CharacterComicProps {
   returned: number;
 }
 
-export interface CharacterComicRequestProps {
+export interface CharacterRequestProps {
   id: number;
   limit: number;
 }

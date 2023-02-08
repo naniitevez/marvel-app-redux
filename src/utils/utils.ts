@@ -43,10 +43,30 @@ export const fetchComic = async (id: number): Promise<ApiResponse> => {
 
 export const fetchCharacterComics = async (
   id: number,
-  limit:number
+  limit: number
 ): Promise<ApiResponse> => {
   const response = await apiClient.get(
     `/comics?characters=${id}&${AUTH_PARAMS}&limit=${limit}`
+  );
+  return response.data;
+};
+
+export const fetchCharacterSeries = async (
+  id: number,
+  limit: number
+): Promise<ApiResponse> => {
+  const response = await apiClient.get(
+    `/series?characters=${id}&${AUTH_PARAMS}&limit=${limit}`
+  );
+  return response.data;
+};
+
+export const fetchCharacterStories = async (
+  id: number,
+  limit: number
+): Promise<ApiResponse> => {
+  const response = await apiClient.get(
+    `/stories?characters=${id}&${AUTH_PARAMS}&limit=${limit}`
   );
   return response.data;
 };
