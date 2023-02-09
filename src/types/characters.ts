@@ -69,7 +69,7 @@ export interface CharacterDetailApiResponse {
   error?: string | null;
 }
 
-interface CharacterComicProps {
+export interface CharacterComicProps {
   available: number;
   collectionURI: string;
   items: [];
@@ -81,7 +81,7 @@ export interface CharacterRequestProps {
   limit: number;
 }
 
-interface ThumbnailProps {
+export interface ThumbnailProps {
   path: string;
   extension: string;
 }

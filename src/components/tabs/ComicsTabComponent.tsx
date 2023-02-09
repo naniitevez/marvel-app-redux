@@ -6,6 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TabComponentProps } from "../../types/types";
 import CardComponent from "../CardComponent";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 const ComicsTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
   const dispatch = useAppDispatch();
@@ -17,17 +18,36 @@ const ComicsTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
 
   return (
     <section id="comics-tab">
-      {comics &&
-        comics.map((comic) => (
-          <CardComponent
-            key={comic?.id}
-            isComic={true}
-            name={comic?.title}
-            image={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
-            id={comic?.id}
-            price={comic?.prices[0].price}
-          />
-        ))}
+      <Splide
+        options={{
+          width: "100%",
+          type: "loop",
+          drag: "free",
+          snap: true,
+          perPage: 4,
+          breakpoints: {
+            1200: {
+              perPage: 3,
+            },
+            850: {
+              perPage: 2,
+            },
+          },
+        }}
+      >
+        {comics &&
+          comics.map((comic) => (
+            <SplideSlide key={comic?.id}>
+              <CardComponent
+                isComic={true}
+                name={comic?.title}
+                image={`${comic?.thumbnail.path}.${comic?.thumbnail.extension}`}
+                id={comic?.id}
+                price={comic?.prices[0].price}
+              />
+            </SplideSlide>
+          ))}
+      </Splide>
     </section>
   );
 };

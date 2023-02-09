@@ -24,11 +24,42 @@
     }
 
     & .tab-content {
-        padding: 2rem;
+      padding: 2rem;
 
-        & #comics-tab {
-            
+      & #comics-tab,
+      & #series-tab {
+        & .splide__arrows {
+          & .splide__arrow {
+            background: #fff;
+            border: 2px solid variables.$grey;
+
+            &:focus {
+              outline-color: variables.$grey;
+            }
+          }
         }
+
+        & .splide__track {
+          padding-bottom: 2rem;
+          padding-top: 2rem;
+
+          & .splide__list {
+            & .card-item {
+              margin: 0 auto;
+            }
+          }
+        }
+
+        & .splide__pagination {
+          & .splide__pagination__page {
+            background: #8a8782;
+
+            &.is-active {
+              background: variables.$red;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -37,7 +68,8 @@
   Character detail page
 -----------------------------------------*/
 
-#character-detail {
+#character-detail,
+#comic-detail {
   & header.detail-header {
     width: 100%;
     height: 85vh;
@@ -87,7 +119,7 @@
 
       & .text-container {
         color: #fff;
-        height: 70%;
+        height: 90%;
         padding: 30px;
         margin-left: 30px;
         display: flex;
@@ -99,8 +131,56 @@
         backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.09);
 
+        & .title-container {
+          & h1 {
+            font-size: 26px;
+          }
+        }
+
         & .description {
           font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+#comic-detail {
+  & header.detail-header {
+    & .detail-info {
+      & .image-container {
+        & .price-content {
+          background: variables.$blue;
+          color: #fff;
+          font-weight: 400;
+          width: 3rem;
+          position: absolute;
+          z-index: 10;
+          display: flex;
+          justify-content: center;
+          border-radius: 5px;
+        }
+
+        & img {
+          height: 550px;
+        }
+      }
+
+      & .text-container {
+        & ul.creators-list {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+          margin: 20px 0;
+
+          & li {
+            flex: 0 0 30%;
+
+            & strong {
+              font-weight: 500;
+              font-size: 20px;
+            }
+          }
         }
       }
     }

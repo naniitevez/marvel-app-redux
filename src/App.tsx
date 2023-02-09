@@ -11,6 +11,7 @@ import CharactersPage from "./pages/CharactersPage";
 import ComicsPage from "./pages/ComicsPage";
 import CharacterDetailPage from "./pages/CharacterDetailPage";
 import ComicDetailPage from "./pages/ComicDetailPage";
+import '@splidejs/react-splide/css';
 
 function App() {
   return (

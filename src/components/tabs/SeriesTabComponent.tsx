@@ -1,3 +1,4 @@
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import React, { useEffect } from "react";
 import {
   getCharacterDetailState,
@@ -17,16 +18,35 @@ const SeriesTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
 
   return (
     <section id="series-tab">
-      {series &&
-        series.map((serie) => (
-          <CardComponent
-            key={serie?.id}
-            isComic={false}
-            name={serie?.title}
-            image={`${serie?.thumbnail.path}.${serie?.thumbnail.extension}`}
-            id={serie?.id}
-          />
-        ))}
+      <Splide
+        options={{
+          width: "100%",
+          type: "loop",
+          drag: "free",
+          snap: true,
+          perPage: 4,
+          breakpoints: {
+            1200: {
+              perPage: 3,
+            },
+            850: {
+              perPage: 2,
+            },
+          },
+        }}
+      >
+        {series &&
+          series.map((serie) => (
+            <SplideSlide key={serie?.id}>
+              <CardComponent
+                isComic={false}
+                name={serie?.title}
+                image={`${serie?.thumbnail.path}.${serie?.thumbnail.extension}`}
+                id={serie?.id}
+              />
+            </SplideSlide>
+          ))}
+      </Splide>
     </section>
   );
 };

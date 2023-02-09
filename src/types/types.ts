@@ -1,5 +1,3 @@
-import { ComicsProps } from "./comics";
-
 export interface LogoProps {
   logo: string;
 }
