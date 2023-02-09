@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { LoadRemove, LoadStart } from "../components/Loading";
+import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 import { getComicDetail, getAllComicsState } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { ComicDetailApiResponse } from "../types/comics";
@@ -17,10 +17,10 @@ const ComicDetailPage = () => {
 
   useEffect(() => {
     if (status === "loading") {
-      LoadStart();
+      SpinnerStart();
     }
     if (status === "succeced") {
-      LoadRemove();
+      SpinnerRemove();
     }
   }, [status]);
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CardComponent from "../components/CardComponent";
 import ImageBanner from "../components/ImageBanner";
-import { LoadRemove, LoadStart } from "../components/Loading";
+import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 import PaginationComponent from "../components/PaginationComponent";
 import { getComics, getAllComicsState } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -12,10 +12,10 @@ const ComicsPage = () => {
 
   useEffect(() => {
     if (status === "loading") {
-      LoadStart();
+      SpinnerStart();
     }
     if (status === "succeced") {
-      LoadRemove();
+      SpinnerRemove();
     }
   }, [status]);
 

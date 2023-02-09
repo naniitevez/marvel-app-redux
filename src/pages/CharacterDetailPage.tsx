@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { LoadRemove, LoadStart } from "../components/Loading";
+import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 import ComicsTabComponent from "../components/tabs/ComicsTabComponent";
 import SeriesTabComponent from "../components/tabs/SeriesTabComponent";
 import {
@@ -24,10 +24,10 @@ const CharacterDetailPage = () => {
 
   useEffect(() => {
     if (status === "loading") {
-      LoadStart();
+      SpinnerStart();
     }
     if (status === "succeced") {
-      LoadRemove();
+      SpinnerRemove();
     }
   }, [status]);
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CardComponent from "../components/CardComponent";
 import HeroSection from "../components/home/HeroSection";
-import { LoadRemove, LoadStart } from "../components/Loading";
+import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 import {
   getAllCharactersState,
   getCharactersOrderByModified,
@@ -13,9 +13,9 @@ const Home = () => {
   const { orderByModified, status } = useAppSelector(getAllCharactersState);
 
   useEffect(() => {
-    if (status === "loading") LoadStart();
+    if (status === "loading") SpinnerStart();
 
-    if (status === "succeced") LoadRemove();
+    if (status === "succeced") SpinnerRemove();
   });
 
   useEffect(() => {

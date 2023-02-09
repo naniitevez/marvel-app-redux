@@ -4,7 +4,7 @@ import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getCharacters, getAllCharactersState } from "../redux/charactersSlice";
-import { LoadRemove, LoadStart } from "../components/Loading";
+import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 
 const CharactersPage = () => {
   const { status, limit, total, characters } = useAppSelector(
@@ -14,10 +14,10 @@ const CharactersPage = () => {
 
   useEffect(() => {
     if (status === "loading") {
-      LoadStart();
+      SpinnerStart();
     }
     if (status === "succeced") {
-      LoadRemove();
+      SpinnerRemove();
     }
   }, [status]);
 
