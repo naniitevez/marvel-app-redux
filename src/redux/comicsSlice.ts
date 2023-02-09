@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ComicsDataState } from "../types/comics";
 import { ApiResponse } from "../types/characters";
-import { fetchComics, fetchComic } from "../utils/utils";
+import { fetchComics, fetchComicDetail } from "../api/utils";
 import { RootState } from "./store";
 
 const initialState: ComicsDataState = {
@@ -24,7 +24,7 @@ export const getComics = createAsyncThunk<ApiResponse, number>(
 export const getComicDetail = createAsyncThunk<ApiResponse, number>(
   "comics/getComicDetail",
   async (id) => {
-    const response = await fetchComic(id);
+    const response = await fetchComicDetail(id);
     return response;
   }
 );

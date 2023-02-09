@@ -32,6 +32,9 @@ const ComicsTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
             850: {
               perPage: 2,
             },
+            590: {
+              perPage: 1,
+            }
           },
         }}
       >

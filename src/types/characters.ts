@@ -2,6 +2,7 @@ import { Status } from "./types";
 
 export interface CharactersDataState {
   characters: any[];
+  orderByModified: any[];
   limit: number;
   total: number;
   attributionHTML: string;

@@ -15,33 +15,40 @@ const TIMESTAMP = Date.now().toString();
 const HASH = getHash(TIMESTAMP, PRIVATE_KEY, PUBLIC_KEY);
 const AUTH_PARAMS = `ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${HASH}`;
 
-export const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
+const fetchCharactersOrderByModified = async (): Promise<ApiResponse> => {
+  const response = await apiClient.get(
+    `/characters?orderBy=modified&${AUTH_PARAMS}`
+  );
+  return response.data;
+};
+
+const fetchCharacters = async (offset: number): Promise<ApiResponse> => {
   const response = await apiClient.get(
     `/characters?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}`
   );
   return response.data;
 };
 
-export const fetchCharacterDetail = async (
+const fetchCharacterDetail = async (
   id: number
 ): Promise<ApiResponse> => {
   const response = await apiClient.get(`/characters/${id}?${AUTH_PARAMS}`);
   return response.data;
 };
 
-export const fetchComics = async (offset: number): Promise<ApiResponse> => {
+const fetchComics = async (offset: number): Promise<ApiResponse> => {
   const response = await apiClient.get(
     `/comics?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}`
   );
   return response.data;
 };
 
-export const fetchComic = async (id: number): Promise<ApiResponse> => {
+const fetchComicDetail = async (id: number): Promise<ApiResponse> => {
   const response = await apiClient.get(`/comics/${id}?${AUTH_PARAMS}`);
   return response.data;
 };
 
-export const fetchCharacterComics = async (
+const fetchCharacterComics = async (
   id: number,
   limit: number
 ): Promise<ApiResponse> => {
@@ -51,7 +58,7 @@ export const fetchCharacterComics = async (
   return response.data;
 };
 
-export const fetchCharacterSeries = async (
+const fetchCharacterSeries = async (
   id: number,
   limit: number
 ): Promise<ApiResponse> => {
@@ -60,3 +67,13 @@ export const fetchCharacterSeries = async (
   );
   return response.data;
 };
+
+export {
+  fetchCharactersOrderByModified,
+  fetchCharacters,
+  fetchCharacterDetail,
+  fetchComics,
+  fetchComicDetail,
+  fetchCharacterComics,
+  fetchCharacterSeries
+}

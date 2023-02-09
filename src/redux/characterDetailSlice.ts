@@ -8,7 +8,7 @@ import {
   fetchCharacterComics,
   fetchCharacterDetail,
   fetchCharacterSeries,
-} from "../utils/utils";
+} from "../api/utils";
 import { RootState } from "./store";
 
 const initialState: CharacterDetailDataState = {

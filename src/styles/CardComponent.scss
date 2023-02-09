@@ -4,6 +4,9 @@
   width: 255px;
   height: 355px;
   margin: 0 1.5rem 1.5rem;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
 
   & .image-container {
     display: block;
