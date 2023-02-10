@@ -67,17 +67,17 @@ export interface ComicResult {
   issn: string;
   format: string;
   pageCount: number;
-  textObjects: any[];
+  textObjects: TextObject[];
   resourceURI: string;
   urls: UrlProps[];
   series: Series;
   variants: VariantProps[];
   collections: any[];
-  collectedIssues: any[];
+  collectedIssues: CollectedIssue[];
   dates: Date[];
   prices: PriceProps[];
   thumbnail: ThumbnailProps;
-  images: any[];
+  images: ImageProps[];
   creators: Creators;
   characters: Characters;
   stories: Stories;
@@ -102,7 +102,7 @@ export interface SerieResult {
   comics: Comics;
   events: Events;
   next?: Next;
-  previous: any;
+  previous?: Previous;
 }
 
 interface ThumbnailProps {
@@ -190,11 +190,21 @@ interface CreatorProps {
 export interface Characters {
   available: number;
   collectionURI: string;
-  items: any[];
+  items: CharactersProps[];
   returned: number;
 }
 
+interface CharactersProps {
+  resourceURI: string;
+  name: string;
+}
+
 interface Next {
+  resourceURI: string;
+  name: string;
+}
+
+interface Previous {
   resourceURI: string;
   name: string;
 }

@@ -15,17 +15,14 @@ const ComicDetailPage = () => {
   const comicId = Number(id);
 
   useEffect(() => {
-    if (status === "loading") {
-      SpinnerStart();
-    }
-    if (status === "succeced") {
-      SpinnerRemove();
-    }
+    if (status === "loading") SpinnerStart();
+    if (status === "succeced") SpinnerRemove();
   }, [status]);
 
   useEffect(() => {
     dispatch(getComicDetail(comicId));
-  }, []);
+    // eslint-disable-next-line
+  }, [comicId]);
 
   return (
     <main id="comic-detail">
@@ -36,7 +33,7 @@ const ComicDetailPage = () => {
         <div className="gradient"></div>
         <section className="detail-info">
           <div className="image-container">
-          <div className="price-content">${comic?.prices[0].price}</div>
+            <div className="price-content">${comic?.prices[0].price}</div>
             <img src={comicImage} alt={comic?.title} />
           </div>
           <div className="text-container">

@@ -22,17 +22,14 @@ const CharacterDetailPage = () => {
   const characterId = Number(id);
 
   useEffect(() => {
-    if (status === "loading") {
-      SpinnerStart();
-    }
-    if (status === "succeced") {
-      SpinnerRemove();
-    }
+    if (status === "loading") SpinnerStart();
+    if (status === "succeced") SpinnerRemove();
   }, [status]);
 
   useEffect(() => {
     dispatch(getCharacterDetail(characterId));
-  }, []);
+    // eslint-disable-next-line
+  }, [characterId]);
 
   return (
     <main id="character-detail">
@@ -59,10 +56,16 @@ const CharacterDetailPage = () => {
         {character?.id && (
           <Tabs defaultActiveKey="comics" className="mb-3">
             <Tab eventKey="comics" title="Cómics">
-              <ComicsTabComponent characterId={character?.id} limit={totalComics} />
+              <ComicsTabComponent
+                characterId={character?.id}
+                limit={totalComics}
+              />
             </Tab>
             <Tab eventKey="series" title="Series">
-              <SeriesTabComponent characterId={character?.id} limit={totalComics} />
+              <SeriesTabComponent
+                characterId={character?.id}
+                limit={totalComics}
+              />
             </Tab>
           </Tabs>
         )}

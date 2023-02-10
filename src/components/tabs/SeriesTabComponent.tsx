@@ -21,7 +21,8 @@ const SeriesTabComponent: React.FC<TabComponentProps> = ({
 
   useEffect(() => {
     dispatch(getCharacterSeries({ characterId, limit }));
-  }, []);
+    // eslint-disable-next-line
+  }, [characterId, limit]);
 
   return (
     <section id="series-tab">

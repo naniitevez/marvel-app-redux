@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import CardComponent from "../components/CardComponent";
 import HeroSection from "../components/home/HeroSection";
 import { SpinnerRemove, SpinnerStart } from "../components/Loading";
-import { getAllCharactersState, getCharacterByOrder } from "../redux/charactersSlice";
+import {
+  getAllCharactersState,
+  getCharacterByOrder,
+} from "../redux/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const Home = () => {
@@ -11,12 +14,12 @@ const Home = () => {
 
   useEffect(() => {
     if (status === "loading") SpinnerStart();
-
     if (status === "succeced") SpinnerRemove();
-  });
+  }, [status]);
 
   useEffect(() => {
     dispatch(getCharacterByOrder());
+    // eslint-disable-next-line
   }, []);
 
   return (

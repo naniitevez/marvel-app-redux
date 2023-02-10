@@ -21,7 +21,8 @@ const ComicsTabComponent: React.FC<TabComponentProps> = ({
 
   useEffect(() => {
     dispatch(getCharacterComics({ characterId, limit }));
-  }, []);
+    // eslint-disable-next-line
+  }, [characterId, limit]);
 
   return (
     <section id="comics-tab">
