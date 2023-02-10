@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/App.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -16,7 +16,7 @@ import '@splidejs/react-splide/css';
 function App() {
   return (
     <Provider store={store}>
-      <HashRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,7 +26,7 @@ function App() {
           <Route path="/comics/:id" element={<ComicDetailPage />} />
         </Routes>
         <Footer />
-      </HashRouter>
+      </BrowserRouter>
     </Provider>
   );
 }
