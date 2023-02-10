@@ -9,13 +9,12 @@ import {
   getCharacterDetailState,
 } from "../redux/characterDetailSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { CharacterDetailApiResponse } from "../types/characters";
 import "../styles/DetailPage.scss";
 
 const CharacterDetailPage = () => {
   const dispatch = useAppDispatch();
   const { detail, status } = useAppSelector(getCharacterDetailState);
-  const character: CharacterDetailApiResponse = detail[0];
+  const character = detail[0];
   const characterImage = `${character?.thumbnail.path}.${character?.thumbnail.extension}`;
   const totalComics = character?.comics.available;
 

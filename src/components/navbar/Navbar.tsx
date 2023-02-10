@@ -24,7 +24,7 @@ const Navbar = () => {
 
         <div className="hamburger-container">
           <div onClick={() => handleMenu()} className="img-container">
-            <img src="/assets/hamburger-svgrepo-com.svg" />
+            <img src="/assets/hamburger-svgrepo-com.svg" alt="menu hamburguesa" />
           </div>
           <div className="menu" style={{ display: `${isActive ? "contents" : "none"}` }}>
             <ul>

@@ -5,10 +5,17 @@ import {
   getCharacterSeries,
 } from "../../redux/characterDetailSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { TabComponentProps } from "../../types/types";
 import CardComponent from "../CardComponent";
 
-const SeriesTabComponent: React.FC<TabComponentProps> = ({ characterId, limit }) => {
+interface TabComponentProps {
+  characterId: number;
+  limit: number;
+}
+
+const SeriesTabComponent: React.FC<TabComponentProps> = ({
+  characterId,
+  limit,
+}) => {
   const dispatch = useAppDispatch();
   const { series } = useAppSelector(getCharacterDetailState);
 
@@ -34,7 +41,7 @@ const SeriesTabComponent: React.FC<TabComponentProps> = ({ characterId, limit })
             },
             590: {
               perPage: 1,
-            }
+            },
           },
         }}
       >

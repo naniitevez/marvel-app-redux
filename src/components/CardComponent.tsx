@@ -1,7 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CardProps } from "../types/characters";
-import '../styles/CardComponent.scss'
+import "../styles/CardComponent.scss";
+
+interface CardProps {
+  isComic: boolean;
+  name: string;
+  image: string;
+  id: number;
+  price?: number;
+}
 
 const CardComponent: React.FC<CardProps> = ({
   isComic,

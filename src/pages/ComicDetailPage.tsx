@@ -3,12 +3,11 @@ import { useParams } from "react-router-dom";
 import { SpinnerRemove, SpinnerStart } from "../components/Loading";
 import { getComicDetail, getAllComicsState } from "../redux/comicsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { ComicDetailApiResponse } from "../types/comics";
 
 const ComicDetailPage = () => {
   const dispatch = useAppDispatch();
   const { comicDetail, status } = useAppSelector(getAllComicsState);
-  const comic: ComicDetailApiResponse = comicDetail[0];
+  const comic = comicDetail[0];
   const comicImage = `${comic?.thumbnail.path}.${comic?.thumbnail.extension}`;
   const creators = comic?.creators.items;
 

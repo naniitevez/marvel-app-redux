@@ -1,6 +1,10 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import { PaginationProps } from "../types/types";
+
+interface PaginationProps {
+  handleClick: (data: { selected: number }) => void;
+  pageCount: number;
+}
 
 const PaginationComponent: React.FC<PaginationProps> = ({
   handleClick,

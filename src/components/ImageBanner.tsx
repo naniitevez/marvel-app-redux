@@ -1,5 +1,9 @@
 import React from "react";
-import { ImageBannerProps } from "../types/types";
+
+interface ImageBannerProps {
+  image: string;
+  alt: string;
+}
 
 const ImageBanner: React.FC<ImageBannerProps> = ({ image, alt }) => {
   return (
