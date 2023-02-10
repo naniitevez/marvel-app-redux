@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import apiClient from "../api/client";
-import { ApiResponse, CharactersDataState } from "../types/characters";
+import { CharacterApiResponse } from "../api/models/response/models";
+import { CharactersDataState } from "./models";
 import { RootState } from "./store";
 
 const initialState: CharactersDataState = {
@@ -13,7 +14,7 @@ const initialState: CharactersDataState = {
   error: null,
 };
 
-export const getCharacters = createAsyncThunk<ApiResponse, number>(
+export const getCharacters = createAsyncThunk<CharacterApiResponse, number>(
   "characters/getCharacters",
   async (offset) => {
     const response = await apiClient.getCharacters(offset);
@@ -21,7 +22,7 @@ export const getCharacters = createAsyncThunk<ApiResponse, number>(
   }
 );
 
-export const getCharacterByOrder = createAsyncThunk<ApiResponse>(
+export const getCharacterByOrder = createAsyncThunk<CharacterApiResponse>(
   "characters/getCharacterByOrder",
   async () => {
     const response = await apiClient.getCharacters( 0, 'modified');

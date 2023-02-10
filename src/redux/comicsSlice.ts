@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ComicsDataState } from "../types/comics";
-import { ApiResponse } from "../types/characters";
 import { RootState } from "./store";
 import apiClient from "../api/client";
+import { ComicApiResponse } from "../api/models/response/models";
+import { ComicsDataState } from "./models";
 
 const initialState: ComicsDataState = {
   comics: [],
@@ -13,7 +13,7 @@ const initialState: ComicsDataState = {
   error: null,
 };
 
-export const getComics = createAsyncThunk<ApiResponse, number>(
+export const getComics = createAsyncThunk<ComicApiResponse, number>(
   "comics/getComics",
   async (offset) => {
     const response = await apiClient.getComics(offset);
@@ -21,7 +21,7 @@ export const getComics = createAsyncThunk<ApiResponse, number>(
   }
 );
 
-export const getComicDetail = createAsyncThunk<ApiResponse, number>(
+export const getComicDetail = createAsyncThunk<ComicApiResponse, number>(
   "comics/getComicDetail",
   async (id) => {
     const response = await apiClient.getComicById(id);

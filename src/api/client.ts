@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 import { MD5 } from "crypto-js";
-import { ApiResponse } from "../types/characters";
 import { ITEM_LIMIT, PRIVATE_KEY, PUBLIC_KEY } from "./constants";
+import {
+  CharacterApiResponse,
+  ComicApiResponse,
+  SerieApiResponse,
+} from "./models/response/models";
 
 const axiosClient = axios.create({
   // URL para variable de entorno
@@ -44,26 +48,26 @@ class ApiClient {
   getCharacters = async (
     offset: number = 0,
     orderBy: string = "name"
-  ): Promise<ApiResponse> => {
+  ): Promise<CharacterApiResponse> => {
     const response = await this.client.get(
       `/characters?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}&orderBy=${orderBy}`
     );
     return response.data;
   };
 
-  getCharacterById = async (id: number): Promise<ApiResponse> => {
+  getCharacterById = async (id: number): Promise<CharacterApiResponse> => {
     const response = await this.client.get(`/characters/${id}?${AUTH_PARAMS}`);
     return response.data;
   };
 
-  getComics = async (offset: number = 0): Promise<ApiResponse> => {
+  getComics = async (offset: number = 0): Promise<ComicApiResponse> => {
     const response = await this.client.get(
       `/comics?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}`
     );
     return response.data;
   };
 
-  getComicById = async (id: number): Promise<ApiResponse> => {
+  getComicById = async (id: number): Promise<ComicApiResponse> => {
     const response = await this.client.get(`/comics/${id}?${AUTH_PARAMS}`);
     return response.data;
   };
@@ -71,7 +75,7 @@ class ApiClient {
   getComicsByCharacterId = async (
     characterId: number,
     limit: number
-  ): Promise<ApiResponse> => {
+  ): Promise<ComicApiResponse> => {
     const response = await this.client.get(
       `/comics?characters=${characterId}&${AUTH_PARAMS}&limit=${limit}`
     );
@@ -81,7 +85,7 @@ class ApiClient {
   getSeriesByCharacterId = async (
     characterId: number,
     limit: number
-  ): Promise<ApiResponse> => {
+  ): Promise<SerieApiResponse> => {
     const response = await this.client.get(
       `/series?characters=${characterId}&${AUTH_PARAMS}&limit=${limit}`
     );
