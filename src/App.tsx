@@ -16,7 +16,7 @@ import '@splidejs/react-splide/css';
 function App() {
   return (
     <Provider store={store}>
-      <HashRouter>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
