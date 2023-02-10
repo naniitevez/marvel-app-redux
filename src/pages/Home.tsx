@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import CardComponent from "../components/CardComponent";
 import HeroSection from "../components/home/HeroSection";
 import { SpinnerRemove, SpinnerStart } from "../components/Loading";
-import {
-  getAllCharactersState,
-  getCharactersOrderByModified,
-} from "../redux/charactersSlice";
+import { getAllCharactersState, getCharacterByOrder } from "../redux/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const Home = () => {
@@ -19,7 +16,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    dispatch(getCharactersOrderByModified());
+    dispatch(getCharacterByOrder());
   }, []);
 
   return (

@@ -60,10 +60,10 @@ const CharacterDetailPage = () => {
         {character?.id && (
           <Tabs defaultActiveKey="comics" className="mb-3">
             <Tab eventKey="comics" title="Cómics">
-              <ComicsTabComponent id={character?.id} limit={totalComics} />
+              <ComicsTabComponent characterId={character?.id} limit={totalComics} />
             </Tab>
             <Tab eventKey="series" title="Series">
-              <SeriesTabComponent id={character?.id} limit={totalComics} />
+              <SeriesTabComponent characterId={character?.id} limit={totalComics} />
             </Tab>
           </Tabs>
         )}

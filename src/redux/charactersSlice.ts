@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import apiClient from "../api/client";
 import { ApiResponse, CharactersDataState } from "../types/characters";
-import { fetchCharacters, fetchCharactersOrderByModified } from "../api/utils";
 import { RootState } from "./store";
 
 const initialState: CharactersDataState = {
@@ -16,15 +16,15 @@ const initialState: CharactersDataState = {
 export const getCharacters = createAsyncThunk<ApiResponse, number>(
   "characters/getCharacters",
   async (offset) => {
-    const response = await fetchCharacters(offset);
+    const response = await apiClient.getCharacters(offset);
     return response;
   }
 );
 
-export const getCharactersOrderByModified = createAsyncThunk<ApiResponse>(
-  "characters/getCharactersOrderByModified",
+export const getCharacterByOrder = createAsyncThunk<ApiResponse>(
+  "characters/getCharacterByOrder",
   async () => {
-    const response = await fetchCharactersOrderByModified();
+    const response = await apiClient.getCharacters( 0, 'modified');
     return response;
   }
 );
@@ -48,14 +48,14 @@ export const charactersSlice = createSlice({
         state.limit = action.payload.data.limit;
         state.total = action.payload.data.total;
       })
-      .addCase(getCharactersOrderByModified.rejected, (state, action) => {
+      .addCase(getCharacterByOrder.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
-      .addCase(getCharactersOrderByModified.pending, (state) => {
+      .addCase(getCharacterByOrder.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(getCharactersOrderByModified.fulfilled, (state, action) => {
+      .addCase(getCharacterByOrder.fulfilled, (state, action) => {
         state.status = "succeced";
         state.orderByModified = action.payload.data.results;
         state.attributionHTML = action.payload.attributionHTML;

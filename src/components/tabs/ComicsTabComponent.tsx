@@ -8,12 +8,12 @@ import { TabComponentProps } from "../../types/types";
 import CardComponent from "../CardComponent";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
-const ComicsTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
+const ComicsTabComponent: React.FC<TabComponentProps> = ({ characterId, limit }) => {
   const dispatch = useAppDispatch();
   const { comics } = useAppSelector(getCharacterDetailState);
 
   useEffect(() => {
-    dispatch(getCharacterComics({ id, limit }));
+    dispatch(getCharacterComics({ characterId, limit }));
   }, []);
 
   return (

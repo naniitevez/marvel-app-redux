@@ -1,6 +1,9 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
+import { MD5 } from "crypto-js";
+import { ApiResponse } from "../types/characters";
+import { ITEM_LIMIT, PRIVATE_KEY, PUBLIC_KEY } from "./constants";
 
-const apiClient = axios.create({
+const axiosClient = axios.create({
   // URL para variable de entorno
   baseURL: "https://gateway.marvel.com/v1/public",
 });
@@ -19,5 +22,73 @@ axios.interceptors.response.use(
     return Promise.reject(error.response.data.errors[0]);
   }
 );
+
+const getHash = (
+  timestamp: string,
+  privateKey: string,
+  publicKey: string
+): string => {
+  return MD5(timestamp + privateKey + publicKey).toString();
+};
+
+const TIMESTAMP = Date.now().toString();
+const HASH = getHash(TIMESTAMP, PRIVATE_KEY, PUBLIC_KEY);
+const AUTH_PARAMS = `ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${HASH}`;
+class ApiClient {
+  client: AxiosInstance;
+
+  constructor(client: AxiosInstance) {
+    this.client = client;
+  }
+
+  getCharacters = async (
+    offset: number = 0,
+    orderBy: string = "name"
+  ): Promise<ApiResponse> => {
+    const response = await this.client.get(
+      `/characters?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}&orderBy=${orderBy}`
+    );
+    return response.data;
+  };
+
+  getCharacterById = async (id: number): Promise<ApiResponse> => {
+    const response = await this.client.get(`/characters/${id}?${AUTH_PARAMS}`);
+    return response.data;
+  };
+
+  getComics = async (offset: number = 0): Promise<ApiResponse> => {
+    const response = await this.client.get(
+      `/comics?${AUTH_PARAMS}&limit=${ITEM_LIMIT}&offset=${offset}`
+    );
+    return response.data;
+  };
+
+  getComicById = async (id: number): Promise<ApiResponse> => {
+    const response = await this.client.get(`/comics/${id}?${AUTH_PARAMS}`);
+    return response.data;
+  };
+
+  getComicsByCharacterId = async (
+    characterId: number,
+    limit: number
+  ): Promise<ApiResponse> => {
+    const response = await this.client.get(
+      `/comics?characters=${characterId}&${AUTH_PARAMS}&limit=${limit}`
+    );
+    return response.data;
+  };
+
+  getSeriesByCharacterId = async (
+    characterId: number,
+    limit: number
+  ): Promise<ApiResponse> => {
+    const response = await this.client.get(
+      `/series?characters=${characterId}&${AUTH_PARAMS}&limit=${limit}`
+    );
+    return response.data;
+  };
+}
+
+const apiClient = new ApiClient(axiosClient);
 
 export default apiClient;

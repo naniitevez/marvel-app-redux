@@ -8,12 +8,12 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TabComponentProps } from "../../types/types";
 import CardComponent from "../CardComponent";
 
-const SeriesTabComponent: React.FC<TabComponentProps> = ({ id, limit }) => {
+const SeriesTabComponent: React.FC<TabComponentProps> = ({ characterId, limit }) => {
   const dispatch = useAppDispatch();
   const { series } = useAppSelector(getCharacterDetailState);
 
   useEffect(() => {
-    dispatch(getCharacterSeries({ id, limit }));
+    dispatch(getCharacterSeries({ characterId, limit }));
   }, []);
 
   return (

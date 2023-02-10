@@ -78,7 +78,7 @@ export interface CharacterComicProps {
 }
 
 export interface CharacterRequestProps {
-  id: number;
+  characterId: number;
   limit: number;
 }
 

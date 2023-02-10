@@ -32,7 +32,7 @@ export interface PaginationProps {
 }
 
 export interface TabComponentProps {
-  id: number;
+  characterId: number;
   limit: number;
 }
 

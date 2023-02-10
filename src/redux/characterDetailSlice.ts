@@ -1,14 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import apiClient from "../api/client";
 import {
   ApiResponse,
   CharacterRequestProps,
   CharacterDetailDataState,
 } from "../types/characters";
-import {
-  fetchCharacterComics,
-  fetchCharacterDetail,
-  fetchCharacterSeries,
-} from "../api/utils";
 import { RootState } from "./store";
 
 const initialState: CharacterDetailDataState = {
@@ -22,7 +18,7 @@ const initialState: CharacterDetailDataState = {
 export const getCharacterDetail = createAsyncThunk<ApiResponse, number>(
   "charactersDetail/getCharacterDetail",
   async (id) => {
-    const response = await fetchCharacterDetail(id);
+    const response = await apiClient.getCharacterById(id);
     return response;
   }
 );
@@ -30,16 +26,16 @@ export const getCharacterDetail = createAsyncThunk<ApiResponse, number>(
 export const getCharacterComics = createAsyncThunk<
   ApiResponse,
   CharacterRequestProps
->("charactersDetail/getCharacterComics", async ({ id, limit }) => {
-  const response = await fetchCharacterComics(id, limit);
+>("charactersDetail/getCharacterComics", async ({ characterId, limit }) => {
+  const response = await apiClient.getComicsByCharacterId(characterId, limit);
   return response;
 });
 
 export const getCharacterSeries = createAsyncThunk<
   ApiResponse,
   CharacterRequestProps
->("charactersDetail/getCharacterSeries", async ({ id, limit }) => {
-  const response = await fetchCharacterSeries(id, limit);
+>("charactersDetail/getCharacterSeries", async ({ characterId, limit }) => {
+  const response = await apiClient.getSeriesByCharacterId(characterId, limit);
   return response;
 });
 
